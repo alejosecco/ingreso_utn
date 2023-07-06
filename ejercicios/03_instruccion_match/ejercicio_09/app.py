@@ -6,6 +6,8 @@ import customtkinter
 
 
 '''
+nombre: alejo
+apellido: secco
 Una agencia de viajes cobra $15.000 por cada estadía como base. 
 Luego para calcular las tarifas total realiza el siguiente cálculo, 
 en función de la estación del año y del destino elegido:
@@ -52,7 +54,41 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
+        
+        precio_base = 15000
+        descuento_20 = precio_base * 0.8
+        descuento_10 = precio_base *0.9
+        aumento_20 = precio_base *1.2
+        aumento_10 = precio_base *1.1
+        destino = self.combobox_destino.get()
+        estacion = self.combobox_estaciones.get()
+        match (estacion):
+            case "Verano":
+                match(destino):
+                    case "Bariloche":
+                        alert(title="nose", message="el precio  con el descuento del 20% es de {0} por cada estadía".format(descuento_20))
+                    case "Cataratas" | "Cordoba":
+                        alert(title="nose", message="el precio  con el aumento del 10% es de {0} por cada estadía".format(aumento_10))
+                    case "Mar del plata":
+                        alert(title="nose", message="el precio  con el aumento del 20% es de {0} por cada estadía".format(aumento_20))
+            case "Invierno":
+                match(destino):
+                    case "Bariloche":
+                        alert(title="nose", message="el precio  con el aumento del 20% es de {0} por cada estadía".format(aumento_20))
+                    case "Cataratas" | "Cordoba":
+                        alert(title="nose", message="el precio  con el descuento del 10% es de {0} por cada estadía".format(descuento_10))
+                    case "Mar del plata":
+                        alert(title="nose", message="el precio  con el descuento del 10% es de {0} por cada estadía".format(descuento_10))
+            case "Otoño" | "Primavera":
+                match(destino):
+                    case "Bariloche":
+                        alert(title="nose", message="el precio  con el aumento del 10% es de {0} por cada estadía".format(aumento_10))
+                    case "Cataratas":
+                        alert(title="nose", message="el precio  con el aumento del 10% es de {0} por cada estadía".format(aumento_10))
+                    case "Cordoba":
+                        alert(title="nose", message="el precio  es de {0} por cada estadía".format(precio_base))
+                    case "Mar del plata":
+                        alert(title="nose", message="el precio  con el aumento del 10% es de {0} por cada estadía".format(aumento_10))
             
     
 if __name__ == "__main__":
