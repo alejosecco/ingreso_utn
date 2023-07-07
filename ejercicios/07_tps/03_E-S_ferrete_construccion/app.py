@@ -6,6 +6,8 @@ import customtkinter
 
 '''
 Enunciado:
+nombre: alejo
+apellido: secco
 
 2.	El departamento de Construcción Rural requiere una herramienta que facilite el calculo de materiales necesarios 
 a la hora de realizar un alambrado permetral, se le solicita al usuario que ingrese el ancho y el largo del terreno.
@@ -35,6 +37,7 @@ a la hora de realizar un alambrado permetral, se le solicita al usuario que ingr
     V                                   V
     G V V V V V F V V V V V F V V V V V G
     
+
 '''
 
 
@@ -63,7 +66,18 @@ class App(customtkinter.CTk):
         self.btn_calcular.grid(row=3, pady=10, columnspan=2, sticky="nsew")
 
     def btn_calcular_on_click(self):
-        pass
+        largo_terreno = float(self.txt_largo.get())
+        ancho_terreno = float(self.txt_ancho.get())
+        metro_cuadrados = ancho_terreno * largo_terreno
+        metros_lineales = ((ancho_terreno + largo_terreno)* 2) 
+        postes_quebracho_grueso = int((metros_lineales / 250)+4)
+        postes_quebracho_fino = int(metros_lineales / 12) - postes_quebracho_grueso
+        varillas = int (metros_lineales /2) -postes_quebracho_fino
+        alambre =int(((metros_lineales) / (17/15)) * 7)
+        mensaje = "Su terreno tiene {0}m lineales y {1}m cuadrados por lo que se necesitan, {2} postes de quebracho ancho, {3} postes de quebracho fino, {4} varillas y {5} hilos de alambre".format(metros_lineales, metro_cuadrados, postes_quebracho_grueso, postes_quebracho_fino, varillas, alambre)
+        alert(title="calculo de materiales necesarios ", message= mensaje)
+        
+        
 
 
 if __name__ == "__main__":
