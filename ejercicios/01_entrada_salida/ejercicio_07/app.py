@@ -72,7 +72,7 @@ class App(customtkinter.CTk):
 
     def btn_dividir_on_click(self):
         operadorA = int(self.txt_operador_a.get())
-        operadorB = int(self.txt_operador_a.get())
+        operadorB = int(self.txt_operador_b.get())
         resultadodivi = operadorA / operadorB
         mensaje4 = "el resultado es: {0}".format(resultadodivi)
         alert(title="nose", message= mensaje4 )
