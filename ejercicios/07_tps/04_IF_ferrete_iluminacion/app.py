@@ -38,7 +38,47 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        cantidad_lamparas = int(self.combobox_cantidad.get())
+        marca_lamparas = self.combobox_marca.get()
+        precio_lamparas = int(self.combobox_cantidad.get()) * 800
+        mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
+        if cantidad_lamparas >= 6:
+            precio = precio_lamparas * 0.5
+            alert(title="precio final", message= mensaje + f"{precio}$")
+        elif cantidad_lamparas == 5:
+            match (marca_lamparas):
+                case "ArgentinaLuz":
+                    precio = precio_lamparas *0.60
+                    if precio >= 4000:
+                        precio_desceunto_5 = precio * 0.95
+                        alert(title="precio final", message= mensaje + f"{precio_desceunto_5}$")
+                    else:
+                        alert(title="precio final", message= mensaje + f"{precio}$")
+                case _:
+                    precio = precio_lamparas *0.70
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+        elif cantidad_lamparas == 4:
+            match(marca_lamparas):
+                case "FelipeLamparas" | "ArgentinaLuz":
+                    precio = precio_lamparas * 0.75
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+                case _:
+                    precio = precio_lamparas * 0.80
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+        elif cantidad_lamparas == 3:
+            match (marca_lamparas):
+                case "ArgentinaLuz":
+                    precio = precio_lamparas * 0.85
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+                case "FelipeLamparas":
+                    precio = precio_lamparas * 0.90
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+                case _:
+                    precio = precio_lamparas * 0.95
+                    alert(title="precio final", message= mensaje + f"{precio}$")
+        else:
+            alert(title="precio final", message= mensaje + f"{precio_lamparas}$")
+        
         
     
 if __name__ == "__main__":

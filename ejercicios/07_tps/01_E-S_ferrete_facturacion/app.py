@@ -55,7 +55,7 @@ class App(customtkinter.CTk):
         importe_3 = float(self.txt_importe_3.get())
         resultado_suma = importe_1 + importe_2 + importe_3
         mensaje_suma = f"La suma de los 3 importes da un total de {resultado_suma}" 
-        alert(title="suma", message= mensaje_suma)
+        alert(title="suma importes", message= mensaje_suma)
 
     def btn_promedio_on_click(self):
         importe_1 = float(self.txt_importe_1.get())
@@ -63,7 +63,7 @@ class App(customtkinter.CTk):
         importe_3 = float(self.txt_importe_3.get())
         resultado_promedio = (importe_1 + importe_2 + importe_3) / 3
         mensaje_promedio = f"El promedio de los 3 importes ingresados da un total de {resultado_promedio}" 
-        alert(title="suma", message= mensaje_promedio)
+        alert(title="promedio importes", message= mensaje_promedio)
 
 
     def btn_total_iva_on_click(self):
@@ -72,7 +72,7 @@ class App(customtkinter.CTk):
         importe_3 = float(self.txt_importe_3.get())
         resultado_con_iva = (importe_1 + importe_2 + importe_3) * 1.21
         mensaje_iva = f"La suma de los 3 importes con el IVA incluido da un total de {resultado_con_iva}" 
-        alert(title="suma", message= mensaje_iva)
+        alert(title="importes + iva", message= mensaje_iva)
      
     
 if __name__ == "__main__":
