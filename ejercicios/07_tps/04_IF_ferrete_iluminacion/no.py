@@ -44,37 +44,36 @@ class App(customtkinter.CTk):
         mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
         if cantidad_lamparas >= 6:
             precio = precio_lamparas * 0.5
-            if precio >= 4000:
-                precio_desceunto_5 = precio * 0.95
-                alert(title="precio final", message= mensaje + f"{precio_desceunto_5}$")
-            else:
-                alert(title="precio final", message= mensaje + f"{precio}$")
+            alert(title="precio final", message= mensaje + f"{precio}$")
         elif cantidad_lamparas == 5:
-            if marca_lamparas == "ArgentinaLuz":
+            match (marca_lamparas):
+                case "ArgentinaLuz":
                     precio = precio_lamparas *0.60
                     if precio >= 4000:
                         precio_desceunto_5 = precio * 0.95
                         alert(title="precio final", message= mensaje + f"{precio_desceunto_5}$")
                     else:
                         alert(title="precio final", message= mensaje + f"{precio}$")
-            else:
+                case _:
                     precio = precio_lamparas *0.70
                     alert(title="precio final", message= mensaje + f"{precio}$")
         elif cantidad_lamparas == 4:
-            if marca_lamparas == "FelipeLamparas" | "ArgentinaLuz":
+            match(marca_lamparas):
+                case "FelipeLamparas" | "ArgentinaLuz":
                     precio = precio_lamparas * 0.75
                     alert(title="precio final", message= mensaje + f"{precio}$")
-            else:
+                case _:
                     precio = precio_lamparas * 0.80
                     alert(title="precio final", message= mensaje + f"{precio}$")
         elif cantidad_lamparas == 3:
-            if marca_lamparas == "ArgentinaLuz":
+            match (marca_lamparas):
+                case "ArgentinaLuz":
                     precio = precio_lamparas * 0.85
                     alert(title="precio final", message= mensaje + f"{precio}$")
-            elif marca_lamparas == "FelipeLamparas":
+                case "FelipeLamparas":
                     precio = precio_lamparas * 0.90
                     alert(title="precio final", message= mensaje + f"{precio}$")
-            else:
+                case _:
                     precio = precio_lamparas * 0.95
                     alert(title="precio final", message= mensaje + f"{precio}$")
         else:

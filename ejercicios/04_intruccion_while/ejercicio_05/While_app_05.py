@@ -25,8 +25,12 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_letra_on_click(self):
-        pass
-            
+        letra = str(prompt(title="nose", prompt="ingrese una letra en mayusculas"))
+        while letra != "U" and letra != "T" and letra != "N":
+            alert(title="nose", message="letra no es valida")
+            letra = str(prompt(title="nose", prompt="ingrese una letra en mayusculas"))
+        if letra == "U" or letra == "T" or letra == "N":
+            alert(title="nose", message="letra valida")
     
 if __name__ == "__main__":
     app = App()

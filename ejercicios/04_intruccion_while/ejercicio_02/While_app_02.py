@@ -24,9 +24,10 @@ class App(customtkinter.CTk):
         
     
     def btn_mostrar_iteracion_on_click(self):
-        pass
-    
-    
+        numero = 10
+        while numero > 0:
+            alert(title="nose", message= numero)
+            numero -= 1
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
