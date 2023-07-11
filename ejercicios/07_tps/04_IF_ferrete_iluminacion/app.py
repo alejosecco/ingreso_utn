@@ -40,46 +40,33 @@ class App(customtkinter.CTk):
     def btn_calcular_on_click(self):
         cantidad_lamparas = int(self.combobox_cantidad.get())
         marca_lamparas = self.combobox_marca.get()
-        precio_lamparas = int(self.combobox_cantidad.get()) * 800
+        precio = int(self.combobox_cantidad.get()) * 800
         mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
         if cantidad_lamparas >= 6:
-            precio = precio_lamparas * 0.5
+            precio = precio * 0.5
             if precio >= 4000:
-                precio_desceunto_5 = precio * 0.95
-                alert(title="precio final", message= mensaje + f"{precio_desceunto_5}$")
-            else:
-                alert(title="precio final", message= mensaje + f"{precio}$")
+                precio = precio * 0.95
         elif cantidad_lamparas == 5:
             if marca_lamparas == "ArgentinaLuz":
-                    precio = precio_lamparas *0.60
+                    precio = precio *0.60
                     if precio >= 4000:
-                        precio_desceunto_5 = precio * 0.95
-                        alert(title="precio final", message= mensaje + f"{precio_desceunto_5}$")
-                    else:
-                        alert(title="precio final", message= mensaje + f"{precio}$")
+                        precio = precio * 0.95
             else:
-                    precio = precio_lamparas *0.70
-                    alert(title="precio final", message= mensaje + f"{precio}$")
+                    precio = precio *0.70
         elif cantidad_lamparas == 4:
-            if marca_lamparas == "FelipeLamparas" | "ArgentinaLuz":
-                    precio = precio_lamparas * 0.75
-                    alert(title="precio final", message= mensaje + f"{precio}$")
+            if marca_lamparas == "FelipeLamparas" or marca_lamparas == "ArgentinaLuz":
+                    precio = precio * 0.75
             else:
-                    precio = precio_lamparas * 0.80
-                    alert(title="precio final", message= mensaje + f"{precio}$")
+                    precio = precio * 0.80
         elif cantidad_lamparas == 3:
             if marca_lamparas == "ArgentinaLuz":
-                    precio = precio_lamparas * 0.85
-                    alert(title="precio final", message= mensaje + f"{precio}$")
+                    precio = precio * 0.85
             elif marca_lamparas == "FelipeLamparas":
-                    precio = precio_lamparas * 0.90
-                    alert(title="precio final", message= mensaje + f"{precio}$")
+                    precio = precio * 0.90
             else:
-                    precio = precio_lamparas * 0.95
-                    alert(title="precio final", message= mensaje + f"{precio}$")
-        else:
-            alert(title="precio final", message= mensaje + f"{precio_lamparas}$")
-        
+                    precio = precio * 0.95
+            
+        alert(title="precio final", message= mensaje + f"{precio}$")
         
     
 if __name__ == "__main__":

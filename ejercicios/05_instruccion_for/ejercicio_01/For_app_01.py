@@ -23,8 +23,8 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        numeros = 0
-        for numero in numeros:
+        numeros = 1
+        for numero in range(5):
             alert(title="nose", message=numeros)
             numeros += 1
 

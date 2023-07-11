@@ -32,7 +32,7 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        numeros_negativos = []
+        numeros_negativos = 1
         numeros_enteros = []
         numero_ingresado = prompt(title="nose", prompt="ingrese un numero")
         while numero_ingresado != None:
@@ -43,12 +43,11 @@ class App(customtkinter.CTk):
                 if numero_ingresado >0:
                     numeros_enteros.append(numero_ingresado)
                 else:
-                    numeros_negativos.append(numero_ingresado)
+                    numeros_negativos = numeros_negativos * numero_ingresado
             numero_ingresado = prompt(title="nose", prompt="ingrese un numero")
         suma = sum(numeros_enteros)
-        producto = (numeros_negativos)
         self.txt_suma_acumulada.insert(0, suma)
-        self.txt_producto.insert(0, producto)
+        self.txt_producto.insert(0, numeros_negativos)
     
 if __name__ == "__main__":
     app = App()
