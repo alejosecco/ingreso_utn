@@ -44,13 +44,9 @@ class App(customtkinter.CTk):
         mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
         if cantidad_lamparas >= 6:
             precio = precio * 0.5
-            if precio >= 4000:
-                precio = precio * 0.95
         elif cantidad_lamparas == 5:
             if marca_lamparas == "ArgentinaLuz":
                     precio = precio *0.60
-                    if precio >= 4000:
-                        precio = precio * 0.95
             else:
                     precio = precio *0.70
         elif cantidad_lamparas == 4:
@@ -65,7 +61,9 @@ class App(customtkinter.CTk):
                     precio = precio * 0.90
             else:
                     precio = precio * 0.95
-            
+                    
+        if precio >= 4000:
+                precio = precio * 0.95
         alert(title="precio final", message= mensaje + f"{precio}$")
         
     

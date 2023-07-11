@@ -21,10 +21,7 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        valor = prompt(title="nose", prompt="Ingrese un valor")
-        valor_requerido = 9
-        for valor_requerido in valor:
-            valor = prompt(title="nose", prompt="Ingrese otro valor")
+        pass
         
     
 if __name__ == "__main__":
