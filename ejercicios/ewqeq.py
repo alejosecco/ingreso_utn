@@ -1,2 +1,0 @@
-
-print(range(123))
