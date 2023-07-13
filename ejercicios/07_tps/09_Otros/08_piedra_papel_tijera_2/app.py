@@ -34,8 +34,8 @@ class App(customtkinter.CTk):
         self.btn_restart = customtkinter.CTkButton(master=self, text="RESTART", command=self.btn_restart_on_click, fg_color="red")
         self.btn_restart.grid(row=5, pady=20, columnspan=2, sticky="nsew")
         
-        self.cpu_elije()
-        print(self.seleccion_cpu)
+        #self.cpu_elije()
+        #print(self.seleccion_cpu)
         
         self.contador_vitorias_cpu = 0 
         self.contador_vitorias_player_1 = 0 
@@ -52,7 +52,7 @@ class App(customtkinter.CTk):
         self.btn_papel.configure(state="normal")
         self.btn_tijera.configure(state="normal")
         self.cpu_elije()
-        print(self.seleccion_cpu)
+        #print(self.seleccion_cpu)
 
     def cpu_elije(self):
         pass

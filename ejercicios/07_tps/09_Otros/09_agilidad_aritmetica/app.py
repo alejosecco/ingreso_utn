@@ -51,6 +51,15 @@ class App(customtkinter.CTk):
 
         self.btn_jugar = customtkinter.CTkButton(master=self, text="JUGAR", command=self.btn_jugar_on_click, fg_color="green")
         self.btn_jugar.grid(row=6, pady=30, columnspan=2, rowspan=2,sticky="nsew")
+        
+        primer_numero_random = random.randrange(1,10)
+        segundo_numero_random = random.randrange(1,10)
+        primer_numero = self.txt_operador_a.insert(0,primer_numero_random)
+        segundo_numero = self.txt_operador_b.insert(0, segundo_numero_random)
+        resultado_suma = primer_numero_random + segundo_numero_random
+        resultado_resta = primer_numero_random - segundo_numero_random
+        resultado_multi = primer_numero_random * segundo_numero_random
+        resultado_div = primer_numero_random / segundo_numero_random
 
 
     def deshabilitar_botones(self):
@@ -60,7 +69,6 @@ class App(customtkinter.CTk):
 
     def btn_sumar_on_click(self):
         pass
-
     def btn_restar_on_click(self):
         pass
         

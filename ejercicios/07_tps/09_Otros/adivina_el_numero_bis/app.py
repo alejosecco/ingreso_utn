@@ -45,8 +45,27 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
-
+        self.numero_intento += 1
+        numero_ingresado = int(self.txt_numero.get())
+        mensaje = None
+        if numero_ingresado == self.numero_secreto:
+            match (self.numero_intento):
+                case 1:
+                    mensaje = f"lo adivinaste en {self.numero_intento} intentos, usted es un Psíquico"
+                case 2:
+                    mensaje = f"lo adivinaste en {self.numero_intento} intentos, excelente percepción"
+                case 3:
+                    mensaje = f"lo adivinaste en {self.numero_intento} intentos, Esto es suerte"
+                case 4|5|6:
+                    mensaje =f"lo adivinaste en {self.numero_intento} intentos, Excelente técnica"
+                case _:
+                    mensaje =f"lo adivinaste en {self.numero_intento} intentos, afortunado en el amor!!"
+        elif numero_ingresado > self.numero_secreto:
+            mensaje = "se pasó…"
+        elif numero_ingresado < self.numero_secreto:
+            mensaje = "falta…"
+        alert(title="...", message= mensaje)
+        
 
 if __name__ == "__main__":
     app = App()
