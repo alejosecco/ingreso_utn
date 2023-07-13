@@ -42,28 +42,7 @@ class App(customtkinter.CTk):
         marca_lamparas = self.combobox_marca.get()
         precio = int(self.combobox_cantidad.get()) * 800
         mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
-        
-        '''''
-        if cantidad_lamparas >= 6:
-            precio = precio * 0.5
-        elif cantidad_lamparas == 5:
-            if marca_lamparas == "ArgentinaLuz":
-                    precio = precio *0.60
-            else:
-                    precio = precio *0.70
-        elif cantidad_lamparas == 4:
-            if marca_lamparas == "FelipeLamparas" or marca_lamparas == "ArgentinaLuz":
-                    precio = precio * 0.75
-            else:
-                    precio = precio * 0.80
-        elif cantidad_lamparas == 3:
-            if marca_lamparas == "ArgentinaLuz":
-                    precio = precio * 0.85
-            elif marca_lamparas == "FelipeLamparas":
-                    precio = precio * 0.90
-            else:
-                precio = precio * 0.95
-        '''''
+
         if cantidad_lamparas >= 6:
             precio = precio * 0.5
         else:
