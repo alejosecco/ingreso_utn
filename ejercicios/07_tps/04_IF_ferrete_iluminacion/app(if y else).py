@@ -64,8 +64,8 @@ class App(customtkinter.CTk):
                                         else:
                                                 if marca_lamparas == "FelipeLamparas":
                                                         precio = precio * 0.90
-                                else:
-                                        precio = precio * 0.95
+                                                else:
+                                                        precio = precio * 0.95
         
         
         if precio > 4000:

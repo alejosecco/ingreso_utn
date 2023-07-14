@@ -44,11 +44,40 @@ class App(customtkinter.CTk):
         self.lista = []
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        while (True):
+            numero_ingresado =prompt(title="numeros", prompt="ingrese un numero")
+            if numero_ingresado == None or numero_ingresado == 0:
+                break
+            else:
+                    self.lista.append(int(numero_ingresado))
+        numero_minimo = min(self.lista)
+        numero_maximo = max(self.lista)
+        negativos = []
+        positivos = []
+        ceros = []
+        for numeros in self.lista:
+            if numeros < 0:
+                negativos.append(numeros)
+            elif numeros > 0:
+                positivos.append(numeros)
+            else :
+                ceros.append(numeros)
+        self.maximo_positivos = max(positivos)
+        self.minimo_negativos = min(negativos)
+        self.suma_negativos = sum(negativos)
+        self.suma_positivos = sum(positivos)
+        self.cantidad_ceros = len(ceros)
+        self.cantidad_positivos = len(positivos)
+        self.cantidad_negativos = len(negativos)
+        self.promedio_negativos = self.suma_negativos / self.cantidad_negativos
+        
+                
+                
+        
 
     def btn_mostrar_estadisticas_on_click(self):
-        pass
-
+        mensaje = "la suma de los numeros positivos es {0} con {1} positivos ingresados y el maximo numero positivo en la lista es {2}, la suma de los negativos es {3} con un promedio de {4} y {5} negativos ingresados y el numero mas chico de la lista es {6}. la cantidad de ceros es de {7}.".format(self.suma_positivos,self.cantidad_positivos ,self.maximo_positivos  ,self.suma_negativos,self.promedio_negativos,self.cantidad_negativos,self.minimo_negativos, self.cantidad_ceros)
+        alert(title="estadisticas", message= mensaje)
 
 if __name__ == "__main__":
     app = App()

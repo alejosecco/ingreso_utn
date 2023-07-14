@@ -24,7 +24,9 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        for dato in self.lista_datos:
+            alert(title="nose", message= dato)
+
         
         
     

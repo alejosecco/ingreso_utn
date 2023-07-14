@@ -22,7 +22,12 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        numero_ingresado = int(prompt(title="nose", prompt="ingrese un numero"))
+        for numero in range(1,numero_ingresado):
+            if numero % 2 == 0 and numero:
+                alert(title="nose", message=numero)
+
+        
         
     
 if __name__ == "__main__":

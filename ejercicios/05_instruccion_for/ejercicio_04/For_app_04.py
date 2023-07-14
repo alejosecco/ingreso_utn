@@ -21,7 +21,12 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        valor_necesario = 9
+        for valor in range(20):
+            numero_ingresado = int(prompt(title="nose", prompt="ingrese un numero"))
+            if numero_ingresado == valor_necesario:
+                break
+
         
     
 if __name__ == "__main__":

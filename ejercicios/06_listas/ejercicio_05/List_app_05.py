@@ -24,7 +24,8 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        suma = sum(self.lista_datos)
+        alert(title="nose", message= suma)
     
 if __name__ == "__main__":
     app = App()

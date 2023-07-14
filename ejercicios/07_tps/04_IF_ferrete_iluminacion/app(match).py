@@ -43,28 +43,33 @@ class App(customtkinter.CTk):
         precio = int(self.combobox_cantidad.get()) * 800
         mensaje = "el precio por la compra de {0} lamparas de la marca {1} es ".format(cantidad_lamparas, marca_lamparas)
         
-        if cantidad_lamparas >= 6:
-            precio = precio * 0.5
-        elif cantidad_lamparas == 5:
-            match(marca_lamparas):
-                case "ArgentinaLuz":
-                    precio = precio *0.60
-                case _:
-                    precio = precio *0.70
-        elif cantidad_lamparas == 4:
-            match (marca_lamparas):
-                case  "FelipeLamparas" | "ArgentinaLuz":
-                    precio = precio * 0.75
-                case _:
-                    precio = precio * 0.80
-        elif cantidad_lamparas == 3:
-            match (marca_lamparas):
-                case "ArgentinaLuz":
-                    precio = precio * 0.85
-                case "FelipeLamparas":
-                    precio = precio * 0.90
-                case _:
-                    precio = precio * 0.95
+        match(cantidad_lamparas):
+            case 6:
+                precio = precio * 0.5
+            case 5:
+                match(marca_lamparas):
+                    case "ArgentinaLuz":
+                        precio = precio *0.60
+                    case _:
+                        precio = precio *0.70
+            case 4:
+                match (marca_lamparas):
+                    case  "FelipeLamparas" | "ArgentinaLuz":
+                        precio = precio * 0.75
+                    case _:
+                        precio = precio * 0.80
+            case 3:
+                match (marca_lamparas):
+                    case "ArgentinaLuz":
+                        precio = precio * 0.85
+                    case "FelipeLamparas":
+                        precio = precio * 0.90
+                    case _:
+                        precio = precio * 0.95
+            case 2|1:
+                None
+            case _:
+                precio = precio * 0.5
 
         if precio > 4000:
                 precio = precio * 0.95
