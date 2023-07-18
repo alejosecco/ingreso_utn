@@ -44,9 +44,10 @@ class App(customtkinter.CTk):
         self.lista = []
 
     def btn_comenzar_ingreso_on_click(self):
+        
         while True:
             numero_ingresado = prompt(title="numeros", prompt="ingrese un numero")
-            if numero_ingresado != None:
+            if numero_ingresado != "" and numero_ingresado != None:
                 self.lista.append(float(numero_ingresado))
             #elif str.isdecimal(numero_ingresado) == True:
             else:

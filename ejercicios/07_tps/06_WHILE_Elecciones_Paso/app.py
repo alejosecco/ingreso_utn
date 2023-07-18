@@ -34,16 +34,16 @@ class App(customtkinter.CTk):
         votos_postulados = []
         while True:
             nombre_ingresado = prompt(title="nombre", prompt="ingrese el nombre del postulante")
-            if nombre_ingresado == None:
+            if nombre_ingresado == "" or nombre_ingresado == None:
                 break
             else:
                 nombre_postulante.append(nombre_ingresado)
                 edad_ingresada = prompt(title="edad", prompt="ingrese la edad del postulante")
-                while int(edad_ingresada) < 25:
+                while  str.isdigit(edad_ingresada) == False or int(edad_ingresada) < 25:
                     edad_ingresada = prompt(title="edad", prompt="ingrese una edad valida del postulante")
                 edad_postulantes.append(int(edad_ingresada))
                 votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
-                while int(votos_ingresados) <= 0:
+                while str.isdigit(votos_ingresados) == False or int(votos_ingresados) <= 0:
                     votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
                 votos_postulados.append(int(votos_ingresados))
         
@@ -59,7 +59,7 @@ class App(customtkinter.CTk):
         mensaje_mas_votos = f"{nombre_postulante[index_mas_votos]} fue el candidato con menos vatos"
         print(mensaje_mas_votos)
         #b
-        mensaje_menos_votos = "{} fue el candidato con menos vatos con un total de {}".format(nombre_postulante[index_menos_votos], edad_postulantes[index_menos_votos])
+        mensaje_menos_votos = "{0} fue el candidato de menor edad con {1} años".format(nombre_postulante[index_menos_votos], edad_postulantes[index_menos_votos])
         print(mensaje_menos_votos)
         #c
         print(f"el promedio de las edades de los candidatos es {promedio_edad}")
