@@ -54,21 +54,34 @@ class App(customtkinter.CTk):
         self.txt_edad.delete(0,100)
         self.txt_legajo.delete(0,100)
         apellido = prompt(title="apellido", prompt="ingrese su apellido")
-        edad = 0
-        edad_ingresada = int(prompt(title="edad",prompt= "ingrese su edad"))
-        while edad_ingresada < 18 or edad_ingresada > 90:
-            edad_ingresada = int(prompt(title="edad",prompt= "ingrese una edad valida"))
-        edad = edad_ingresada
+        while str.isdigit(apellido) == True:
+            apellido = prompt(title="apellido", prompt="ingrese un apellido valido")
+        edad = prompt(title="edad",prompt= "ingrese su edad")
+        while (True):
+            if str.isdigit(edad) == False:
+                edad = prompt(title="edad",prompt= "ingrese una edad valida")
+            else: 
+                edad = int(edad)
+                if edad >= 18 and edad < 90:
+                    break
+                else:
+                    edad = prompt(title="edad",prompt= "ingrese una edad valida")
         
         #falta el estado civil
         #
         #
         
-        legajo = None
-        legajo_ingresado = int(prompt(title="legajo", prompt="ingrese su legajo"))
-        while len(str(int(legajo_ingresado))) != 4:
-            legajo_ingresado = prompt(title="legajo", prompt="ingrese un legajo valido")
-        legajo = legajo_ingresado
+
+        legajo = prompt(title="legajo", prompt="ingrese su legajo")
+        while True:
+            if str.isdigit(legajo) == False:
+                legajo = prompt(title="legajo", prompt="ingrese un legajo valido")
+            else:
+                if len(str(int(legajo))) != 4:
+                    legajo = prompt(title="legajo", prompt="ingrese un legajo valido")
+                else:
+                    break
+
             
         self.txt_apellido.insert(0,apellido)
         self.txt_edad.insert(0, edad)

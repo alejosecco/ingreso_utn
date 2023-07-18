@@ -33,7 +33,7 @@ class App(customtkinter.CTk):
 
     def btn_comenzar_ingreso_on_click(self):
         numeros = []
-        while len(numeros) != -1:
+        while True:
             numero_ingresado = prompt(title="nose", prompt="ingrese un numero")
             if numero_ingresado == None:
                 break

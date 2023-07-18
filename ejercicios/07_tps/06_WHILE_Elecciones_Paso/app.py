@@ -29,9 +29,43 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
-
-
+        nombre_postulante = []
+        edad_postulantes = []
+        votos_postulados = []
+        while True:
+            nombre_ingresado = prompt(title="nombre", prompt="ingrese el nombre del postulante")
+            if nombre_ingresado == None:
+                break
+            else:
+                nombre_postulante.append(nombre_ingresado)
+                edad_ingresada = prompt(title="edad", prompt="ingrese la edad del postulante")
+                while int(edad_ingresada) < 25:
+                    edad_ingresada = prompt(title="edad", prompt="ingrese una edad valida del postulante")
+                edad_postulantes.append(int(edad_ingresada))
+                votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
+                while int(votos_ingresados) <= 0:
+                    votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
+                votos_postulados.append(int(votos_ingresados))
+        
+        
+        cantidad_postulados = len(nombre_postulante)
+        promedio_edad = sum(edad_postulantes) / cantidad_postulados
+        votos_emitidos = sum(votos_postulados)
+        menos_votos = min(votos_postulados)
+        mas_votos = max(votos_postulados)
+        index_menos_votos = votos_postulados.index(menos_votos)
+        index_mas_votos = votos_postulados.index(mas_votos)
+        #a
+        mensaje_mas_votos = f"{nombre_postulante[index_mas_votos]} fue el candidato con menos vatos"
+        print(mensaje_mas_votos)
+        #b
+        mensaje_menos_votos = "{} fue el candidato con menos vatos con un total de {}".format(nombre_postulante[index_menos_votos], edad_postulantes[index_menos_votos])
+        print(mensaje_menos_votos)
+        #c
+        print(f"el promedio de las edades de los candidatos es {promedio_edad}")
+        #d
+        print(f"la cantidad de votos emitidos fueron {votos_emitidos}")
+        
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

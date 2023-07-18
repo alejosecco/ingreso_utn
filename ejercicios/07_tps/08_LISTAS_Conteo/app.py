@@ -44,41 +44,41 @@ class App(customtkinter.CTk):
         self.lista = []
 
     def btn_comenzar_ingreso_on_click(self):
-        while (True):
-            numero_ingresado =prompt(title="numeros", prompt="ingrese un numero")
-            if numero_ingresado == None or numero_ingresado == 0:
-                break
+        while True:
+            numero_ingresado = prompt(title="numeros", prompt="ingrese un numero")
+            if numero_ingresado != None:
+                self.lista.append(float(numero_ingresado))
+            #elif str.isdecimal(numero_ingresado) == True:
             else:
-                    self.lista.append(int(numero_ingresado))
-        numero_minimo = min(self.lista)
-        numero_maximo = max(self.lista)
+                break
+        
         negativos = []
         positivos = []
         ceros = []
-        for numeros in self.lista:
-            if numeros < 0:
-                negativos.append(numeros)
-            elif numeros > 0:
-                positivos.append(numeros)
-            else :
-                ceros.append(numeros)
-        self.maximo_positivos = max(positivos)
-        self.minimo_negativos = min(negativos)
-        self.suma_negativos = sum(negativos)
-        self.suma_positivos = sum(positivos)
-        self.cantidad_ceros = len(ceros)
-        self.cantidad_positivos = len(positivos)
-        self.cantidad_negativos = len(negativos)
-        self.promedio_negativos = self.suma_negativos / self.cantidad_negativos
+        for numero in self.lista:
+            if numero < 0:
+                negativos.append(numero)
+            elif numero > 0:
+                positivos.append(numero)
+            else:
+                ceros.append(numero)
         
-                
-                
+        suma_negativos = sum(negativos)
+        suma_positivos = sum(positivos)
+        positivos_ingresados = len(positivos)
+        negativos_ingresados = len(negativos)
+        ceros_ingresados = len(ceros)
+        minimos_negativo = min(negativos)
+        max_positivo = max(positivos)
+        promedio_negativos = suma_negativos / negativos_ingresados
         
-
+        self.mensaje = f"La cantidad de positivos ingresados es {positivos_ingresados}, sumados da un total de {suma_positivos} con {max_positivo} siendo el numero mas grande. La cantidad de negativos ingresados es {negativos_ingresados}, con un total de {suma_negativos} y un promedio de {promedio_negativos}, siendo el {minimos_negativo} el menor numero ingresado. La cantidad de 0 ingresados es {ceros_ingresados}"
+        
     def btn_mostrar_estadisticas_on_click(self):
-        mensaje = "la suma de los numeros positivos es {0} con {1} positivos ingresados y el maximo numero positivo en la lista es {2}, la suma de los negativos es {3} con un promedio de {4} y {5} negativos ingresados y el numero mas chico de la lista es {6}. la cantidad de ceros es de {7}.".format(self.suma_positivos,self.cantidad_positivos ,self.maximo_positivos  ,self.suma_negativos,self.promedio_negativos,self.cantidad_negativos,self.minimo_negativos, self.cantidad_ceros)
-        alert(title="estadisticas", message= mensaje)
-
+        alert(title="informe general", message= self.mensaje)
+    
+    
+    
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

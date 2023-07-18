@@ -35,15 +35,12 @@ class App(customtkinter.CTk):
         numeros_negativos = 1
         numeros_enteros = []
         numero_ingresado = prompt(title="nose", prompt="ingrese un numero")
-        while numero_ingresado != None:
-            if numero_ingresado == "0":
-                 break
-            else:  
-                numero_ingresado = float(numero_ingresado)
-                if numero_ingresado >0:
-                    numeros_enteros.append(numero_ingresado)
-                else:
-                    numeros_negativos = numeros_negativos * numero_ingresado
+        while numero_ingresado != None and numero_ingresado != 0:
+            numero_ingresado = float(numero_ingresado)
+            if numero_ingresado >0:
+                numeros_enteros.append(numero_ingresado)
+            else:
+                numeros_negativos = numeros_negativos * numero_ingresado
             numero_ingresado = prompt(title="nose", prompt="ingrese un numero")
         suma = sum(numeros_enteros)
         self.txt_suma_acumulada.insert(0, suma)
