@@ -32,20 +32,26 @@ class App(customtkinter.CTk):
         nombre_postulante = []
         edad_postulantes = []
         votos_postulados = []
-        while True:
+        #if nombre_ingresado == "" or nombre_ingresado == None:
+                #break
+        while True:        
             nombre_ingresado = prompt(title="nombre", prompt="ingrese el nombre del postulante")
-            if nombre_ingresado == "" or nombre_ingresado == None:
-                break
-            else:
-                nombre_postulante.append(nombre_ingresado)
-                edad_ingresada = prompt(title="edad", prompt="ingrese la edad del postulante")
-                while  str.isdigit(edad_ingresada) == False or int(edad_ingresada) < 25:
-                    edad_ingresada = prompt(title="edad", prompt="ingrese una edad valida del postulante")
-                edad_postulantes.append(int(edad_ingresada))
+            while nombre_ingresado == None or str.isalpha(nombre_ingresado) == False:
+                nombre_ingresado = prompt(title="nombre", prompt="ingrese un nombre valido")
+            nombre_postulante.append(nombre_ingresado)
+            edad_ingresada = prompt(title="edad", prompt="ingrese la edad del postulante")
+            while  edad_ingresada == None or str.isdigit(edad_ingresada) == False or int(edad_ingresada) < 25:
+                edad_ingresada = prompt(title="edad", prompt="ingrese una edad valida del postulante")
+            edad_postulantes.append(int(edad_ingresada))
+            votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
+            while votos_ingresados == None or str.isdigit(votos_ingresados) == False or int(votos_ingresados) <= 0:
                 votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
-                while str.isdigit(votos_ingresados) == False or int(votos_ingresados) <= 0:
-                    votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
-                votos_postulados.append(int(votos_ingresados))
+            votos_postulados.append(int(votos_ingresados))
+            continuar = question (title="continuar", message= "desea ingresar otro candidato?")
+            if continuar == True:
+                continue
+            else:
+                break
         
         
         cantidad_postulados = len(nombre_postulante)

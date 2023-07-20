@@ -54,24 +54,24 @@ class App(customtkinter.CTk):
         self.txt_edad.delete(0,100)
         self.txt_legajo.delete(0,100)
         apellido = prompt(title="apellido", prompt="ingrese su apellido")
-        while str.isdigit(apellido) == True:
+        while apellido == None or str.isalpha(apellido) == False:
             apellido = prompt(title="apellido", prompt="ingrese un apellido valido")
         edad = prompt(title="edad",prompt= "ingrese su edad")
-        while str.isdigit(edad) == False or int(edad) >= 18 and int(edad) < 90:
+        while edad == None or str.isdigit(edad) == False or int(edad) < 18 or int(edad) > 90:
             edad = prompt(title="edad",prompt= "ingrese una edad valida")
         
-        #falta el estado civil
-        #
-        #
-        
+        estado_civil = prompt(title="estado civil", prompt= "ingrese su estado civil")
+        while estado_civil == None or estado_civil != "SOLTERO" and estado_civil != "SOLTERA" and estado_civil != "CASADO" and estado_civil != "CASADA" and estado_civil != "DIVORCIADO " and estado_civil != "DIVORCIADA" and estado_civil != "VIUDO" and estado_civil != "VIUDA":
+            estado_civil = prompt(title="estado civil", prompt= "ingrese un estado civil valido")
 
         legajo = prompt(title="legajo", prompt="ingrese su legajo")
-        while str.isdigit(legajo) == False or len(str(int(legajo))) != 4:
+        while legajo == None or str.isdigit(legajo) == False or len(str(int(legajo))) != 4:
                 legajo = prompt(title="legajo", prompt="ingrese un legajo valido")
 
             
         self.txt_apellido.insert(0,apellido)
         self.txt_edad.insert(0, int(edad))
+        self.combobox_tipo.set(estado_civil)
         self.txt_legajo.insert(0,legajo)
             
 
