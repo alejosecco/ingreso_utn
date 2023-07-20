@@ -1,26 +1,3 @@
-'''
-UTN Software Factory está en la búsqueda de programadores para incorporar a su equipo de 
-trabajo. En las próximas semanas se realizará un exhaustivo proceso de selección. Para ello se 
-ingresarán los siguientes datos de los 10 postulantes para luego establecer distintas métricas 
-necesarias para tomar decisiones a la hora de la selección:
-
-Nombre
-Edad (mayor de edad)
-Género (F-M-NB)
-Tecnología (PYTHON - JS - ASP.NET)
-Puesto (Jr - Ssr - Sr)
-
-Informar por pantalla:
-a. Cantidad de postulantes de genero no binario (NB) que programan en ASP.NET o JS 
-cuya edad este entre 25 y 40, que se hayan postulado para un puesto Ssr.
-b. Nombre del postulante Jr con menor edad.
-c. Promedio de edades por género.
-d. Tecnologia con mas postulantes (solo hay una).
-e. Porcentaje de postulantes de cada genero.
-
-Todos los datos se ingresan por prompt y los resultados se muestran por consola (print)
-
-'''
 import tkinter
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
@@ -60,22 +37,74 @@ class App(customtkinter.CTk):
             tecnologia_ingresada = prompt(title="tecnologia", prompt="ingrese la tecnologia con la que trabaja(PYTHON - JS - ASP.NET)" )
             while tecnologia_ingresada != "PYTHON" and tecnologia_ingresada != "JS" and tecnologia_ingresada != "ASP.NET":
                 tecnologia_ingresada = prompt(title="tecnologia", prompt="ingrese una tecnologia valida(PYTHON - JS - ASP.NET)" )
-            puesto_ingresado = prompt(title="puesto", prompt="ingrese el puesto que ocuparia(Jr - Ssr - Sr)")
-            while puesto_ingresado != "Jr" and puesto_ingresado != "Ssr" and puesto_ingresado != "Sr":
-                puesto_ingresado = prompt(title="puesto", prompt="ingrese un puesto valido(Jr - Ssr - Sr)")
+            tecnologia_postulantes.append(tecnologia_ingresada)
+            puesto_ingresado = prompt(title="puesto", prompt="ingrese el puesto que ocuparia(JR - SSR - SR)")
+            while puesto_ingresado != "JR" and puesto_ingresado != "SSR" and puesto_ingresado != "SR":
+                puesto_ingresado = prompt(title="puesto", prompt="ingrese un puesto valido(JR - SSR - SR)")
             puesto_postulantes.append(puesto_ingresado)
         
         #a
-        no_binario_index = []
-        for gen in range(genero_postulantes):
-            if gen == "NB":
-                no_binario_index.append(gen)
+        contador_punto_a = 0
+        for (genero, edad, lenguaje,puesto) in zip(genero_postulantes, edades_postulantes, tecnologia_postulantes, puesto_postulantes):
+            if genero == "NB" and edad >=25 and edad <= 40 and lenguaje == ("ASP.NET" or "JS") and puesto == "Ssr":
+                contador_punto_a  +=1
+        print(f"la cantidad de postulados con esas caracteristicas es igual a {contador_punto_a}")
                 
         #b
         menor_edad = edades_postulantes.index(min(edades_postulantes))
         print(f"el postulante con menor edad es {nombres_postulantes[menor_edad]}")
         #c
-        
+        contador_no_binario = []
+        contador_masculino = []
+        contador_femenino = []
+        for (genero,edad) in zip(genero_postulantes, edades_postulantes):
+            match (genero):
+                case "NB":
+                        contador_no_binario.append(edad)
+                case "M":
+                        contador_masculino.append(edad)
+                case "F":
+                        contador_femenino.append(edad)
+        promedio_no_binario = None
+        promedio_masculino = None
+        promedio_femenino = None
+        try:
+            promedio_no_binario = sum(contador_no_binario) / len(contador_no_binario)
+        except ZeroDivisionError:
+            promedio_no_binario = 0
+        try:
+            promedio_masculino = sum(contador_masculino) / len(contador_masculino)
+        except ZeroDivisionError:
+            promedio_masculino = 0
+        try:
+            promedio_femenino = sum(contador_femenino) / len(contador_femenino)
+        except ZeroDivisionError:
+            promedio_femenino = 0
+        mensaje = "el promedio de edad en los postulantes no binarios es {0}, en masculinos {1} y en femeninos {2}".format(promedio_no_binario, promedio_masculino, promedio_femenino)
+        print(mensaje)
+        #d
+        contador_js = tecnologia_postulantes.count("JS")
+        contador_python = tecnologia_postulantes.count("PYTHON")
+        contador_asp_net = tecnologia_postulantes.count("ASP.NET")
+        tecnologia = None
+        if contador_python < contador_js > contador_asp_net:
+            tecnologia = "JS"
+        elif contador_js < contador_python > contador_asp_net:
+            tecnologia = "PYTHON"
+        elif contador_js < contador_asp_net > contador_python:
+            tecnologia = "ASP.NET"
+        else:
+            mensaje = "no hay tecnologia con mas numero de postulados"
+        mensaje = f"el programa con mas postulados es {tecnologia} "
+        print(mensaje)
+        #e
+        porcentaje_no_binario = len(contador_no_binario) *10
+        porcentaje_masculino = len(contador_masculino) * 10
+        porcentaje_femenino = len(contador_femenino ) *10
+        mensaje = f"los porcentajes por genero son {porcentaje_no_binario}% de no binarios, {porcentaje_masculino}% de masculinos y {porcentaje_femenino}% de femeninos"
+        print(mensaje)
+
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
