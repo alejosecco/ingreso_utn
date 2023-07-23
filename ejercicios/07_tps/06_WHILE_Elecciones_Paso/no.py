@@ -29,56 +29,49 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        nombre_mas_votos = None
-        mas_votos = 0
-        nombre_menos_votos = None
-        menos_votos = 1000000
-        total_votos = 0
-        contador_candidatos = 0
-        total_edad = 0 
+        nombre_postulante = []
+        edad_postulantes = []
+        votos_postulados = []
+        #if nombre_ingresado == "" or nombre_ingresado == None:
+                #break
         while True:        
             nombre_ingresado = prompt(title="nombre", prompt="ingrese el nombre del postulante")
             while nombre_ingresado == None or str.isalpha(nombre_ingresado) == False:
                 nombre_ingresado = prompt(title="nombre", prompt="ingrese un nombre valido")
+            nombre_postulante.append(nombre_ingresado)
             edad_ingresada = prompt(title="edad", prompt="ingrese la edad del postulante")
             while  edad_ingresada == None or str.isdigit(edad_ingresada) == False or int(edad_ingresada) < 25:
                 edad_ingresada = prompt(title="edad", prompt="ingrese una edad valida del postulante")
-            edad_ingresada = int(edad_ingresada)
+            edad_postulantes.append(int(edad_ingresada))
             votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
             while votos_ingresados == None or str.isdigit(votos_ingresados) == False or int(votos_ingresados) <= 0:
                 votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
-            votos_ingresados = int(votos_ingresados)
-            #punto a
-            if votos_ingresados > mas_votos:
-                mas_votos = votos_ingresados
-                nombre_mas_votos = nombre_ingresado
-            #punto b
-            if votos_ingresados < menos_votos:
-                menos_votos = votos_ingresados
-                nombre_menos_votos = nombre_ingresado
-            #punto c
-            total_edad += edad_ingresada
-            contador_candidatos += 1
-            #punto d
-            total_votos += votos_ingresados
-            #===============
+            votos_postulados.append(int(votos_ingresados))
             continuar = question (title="continuar", message= "desea ingresar otro candidato?")
             if continuar == True:
                 continue
             else:
                 break
-        #punto a 
-        print(f"el candidato con mas votos fue {nombre_mas_votos} con un total de {mas_votos}")
-        #punto b
-        print(f"el candidato con menos votos fue {nombre_menos_votos} con un total de {menos_votos}")
-        #punto c
-        promedio_edad = total_edad / contador_candidatos
-        print(f"el promedio de edades de los candidatos fue {promedio_edad}")
-        #punto d
-        print(f"el total de votos emitidos fue {total_votos}")
         
-
-
+        
+        cantidad_postulados = len(nombre_postulante)
+        promedio_edad = sum(edad_postulantes) / cantidad_postulados
+        votos_emitidos = sum(votos_postulados)
+        menos_votos = min(votos_postulados)
+        mas_votos = max(votos_postulados)
+        index_menos_votos = votos_postulados.index(menos_votos)
+        index_mas_votos = votos_postulados.index(mas_votos)
+        #a
+        mensaje_mas_votos = f"{nombre_postulante[index_mas_votos]} fue el candidato con menos vatos"
+        print(mensaje_mas_votos)
+        #b
+        mensaje_menos_votos = "{0} fue el candidato de menor edad con {1} años".format(nombre_postulante[index_menos_votos], edad_postulantes[index_menos_votos])
+        print(mensaje_menos_votos)
+        #c
+        print(f"el promedio de las edades de los candidatos es {promedio_edad}")
+        #d
+        print(f"la cantidad de votos emitidos fueron {votos_emitidos}")
+        
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
