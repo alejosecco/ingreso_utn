@@ -67,14 +67,55 @@ class App(customtkinter.CTk):
         self.lista_precio_articulo = [1000, 200]
 
     def btn_agregar_on_click(self):
-
-        pass
+        bandera_nombre = False
+        bandera_precio = False
+        nombre_ingresado = self.txt_nombre_articulo.get()
+        precio_ingresado = self.txt_precio_articulo.get()
+        for letra in nombre_ingresado:
+            if letra < "A" or letra > "Z":
+                    bandera_nombre = False
+                    break
+            else:
+                bandera_nombre = True
+        if bandera_nombre == True:
+            alert("nombre valido", "el nombre ingresado es valido")
+        else:
+            alert("nombre invalido", "el nombre ingresado no cumple con lo solicitado")
+        if precio_ingresado != None and str.isnumeric(precio_ingresado) == True:
+            alert("precio valido", "el precio ingresado es valido")
+            precio_ingresado = int(precio_ingresado)
+            bandera_precio =True
+        else:
+            alert("precio invalido", "el precio ingresado no es valido")
+        if bandera_nombre == True and bandera_precio == True:
+            self.lista_nombre_articulo.append(nombre_ingresado)
+            self.lista_precio_articulo.append(precio_ingresado)
+            alert("validacion", "datos cargados correctamente")
 
     def btn_mostrar_on_click(self):
-        pass
+        for (nombre,precio,index) in zip(self.lista_nombre_articulo, self.lista_precio_articulo, range(len(self.lista_precio_articulo))):
+            print(f"producto: {nombre} {precio}$, posicion: {index}")
 
     def btn_informar_on_click(self):
-        pass
+        producto_mas_caro_index = self.lista_precio_articulo.index(max(self.lista_precio_articulo))
+        nombre_producto_mas_caro = self.lista_nombre_articulo[producto_mas_caro_index]
+        precio_producto_mas_caro = self.lista_precio_articulo[producto_mas_caro_index]
+        print(f"el producto mas caro es {nombre_producto_mas_caro} con un precio de {precio_producto_mas_caro}$")
+        producto_mas_barato_index = self.lista_precio_articulo.index(min(self.lista_precio_articulo))
+        nombre_producto_mas_barato = self.lista_nombre_articulo[producto_mas_barato_index]
+        precio_producto_mas_barato = self.lista_precio_articulo[producto_mas_barato_index]
+        print(f"el precuto mas barato es {nombre_producto_mas_barato} con un precio de {precio_producto_mas_barato}$")
+        promedio_precios = sum(self.lista_precio_articulo) / len(self.lista_nombre_articulo)
+        print(f"el precio promedio de los productos es de {promedio_precios}$")
+        articulos_mas_caros = []
+        articulos_mas_baratos = []
+        for (nombre,precio) in zip(self.lista_nombre_articulo, self.lista_precio_articulo):
+            if precio > promedio_precios:
+                articulos_mas_caros.append(nombre)
+            elif precio < promedio_precios:
+                articulos_mas_baratos.append(nombre)
+        print(f"los productos mas caros que el promedio son {articulos_mas_caros} y los mas baratos que el promedio son {articulos_mas_baratos}")
+                
 
 
 if __name__ == "__main__":
