@@ -78,11 +78,10 @@ class App(customtkinter.CTk):
             else:
                 bandera_nombre = True
         if bandera_nombre == True:
-            alert("nombre valido", "el nombre ingresado es valido")
+            pass
         else:
             alert("nombre invalido", "el nombre ingresado no cumple con lo solicitado")
         if precio_ingresado != None and str.isnumeric(precio_ingresado) == True:
-            alert("precio valido", "el precio ingresado es valido")
             precio_ingresado = int(precio_ingresado)
             bandera_precio =True
         else:

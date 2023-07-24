@@ -30,13 +30,14 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         nombre_mas_votos = None
-        mas_votos = 0
+        mas_votos = None
         nombre_menos_votos = None
-        menos_votos = 1000000
+        menos_votos = None  
         total_votos = 0
         contador_candidatos = 0
         total_edad = 0 
-        while True:        
+        bandera_primer_ingreso = True
+        while True:
             nombre_ingresado = prompt(title="nombre", prompt="ingrese el nombre del postulante")
             while nombre_ingresado == None or str.isalpha(nombre_ingresado) == False:
                 nombre_ingresado = prompt(title="nombre", prompt="ingrese un nombre valido")
@@ -49,11 +50,17 @@ class App(customtkinter.CTk):
                 votos_ingresados = prompt(title="votos", prompt="ingrese los votos obtenidos por el postulante")
             votos_ingresados = int(votos_ingresados)
             #punto a
-            if votos_ingresados > mas_votos:
+            if bandera_primer_ingreso == True:
+                mas_votos = votos_ingresados
+                nombre_mas_votos = nombre_ingresado
+                menos_votos = votos_ingresados
+                nombre_menos_votos = nombre_ingresado
+                bandera_primer_ingreso = False
+            elif votos_ingresados > mas_votos:
                 mas_votos = votos_ingresados
                 nombre_mas_votos = nombre_ingresado
             #punto b
-            if votos_ingresados < menos_votos:
+            elif votos_ingresados < menos_votos:
                 menos_votos = votos_ingresados
                 nombre_menos_votos = nombre_ingresado
             #punto c
