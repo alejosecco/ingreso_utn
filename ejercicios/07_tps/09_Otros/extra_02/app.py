@@ -62,15 +62,42 @@ class App(customtkinter.CTk):
         
             
     def btn_ingresar_notas_on_click(self):
-        pass
-        
-    
-    def btn_generar_informe_notas_on_click(self):
-        pass
-        
-    def btn_mostrar_notas_on_click(self):
-        pass
+        self.notas = []
+        nota_ingresada = None
+        while True:
+            nota_ingresada = prompt("ingreso","ingrese la nota")
+            if nota_ingresada == None:
+                break
+            elif  nota_ingresada == "" or str.isnumeric(nota_ingresada) == False or int(nota_ingresada) < 0 or int(nota_ingresada)> 10:
+                alert("valor invalido", "la nota ingresada no es valida")
+                continue
+            else:
+                nota_ingresada = int(nota_ingresada)
+                self.notas.append(nota_ingresada)
 
+    def btn_generar_informe_notas_on_click(self):
+        nota_maxima = max(self.notas)
+        nota_minima = min(self.notas)
+        promedio = sum(self.notas) / len(self.notas)
+        promedio = int(promedio)
+        contador_10 = self.notas.count(10)
+        promedio_mensaje = None
+        match (promedio):
+            case 1|2|3:
+                promedio_mensaje = "el promedio desaprobo"
+            case 4|5|6:
+                promedio_mensaje = "el promedio aprobo"
+            case 7|8|9|10:
+                promedio_mensaje = "el promedio promociono"
+
+
+        mensaje = f"la nota maxima fue {nota_maxima}, la minima {nota_minima} con un promedio de {promedio} y un total de {contador_10} 10. {promedio_mensaje}"
+        alert("informe", mensaje)
+
+    def btn_mostrar_notas_on_click(self):
+        for i in range(len(self.notas)):
+            print(f"{i} - nota: {self.notas[i]}")
+4
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
